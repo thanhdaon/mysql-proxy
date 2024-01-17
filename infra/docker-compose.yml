@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: "mysql:8.2.0"
+    volumes:
+      - "mysql-data:/var/lib/mysql"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=YFTNgdJCP2AHUTQln87sTUjLs7RMk"
+    ports:
+      - "3306:3306"
+  
+  mysql-proxy:
+    image: "database/mysql-proxy"
+    environment:
+      - "PORT=1234"
+      - "MYSQL_ROOT_URI=mysql://root:YFTNgdJCP2AHUTQln87sTUjLs7RMk@mysql:3306"
+    ports:
+      - "1234:1234"
+
+volumes:
+  mysql-data:

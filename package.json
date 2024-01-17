@@ -1,0 +1,17 @@
+{
+  "name": "mysql-proxy",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@t3-oss/env-core": "^0.7.1",
+    "elysia": "^0.8.8",
+    "mysql2": "^3.6.5",
+    "zod": "^3.22.4"
+  }
+}
