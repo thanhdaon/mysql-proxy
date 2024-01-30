@@ -9,6 +9,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@bogeychan/elysia-logger": "^0.0.16",
     "@t3-oss/env-core": "^0.7.1",
     "elysia": "^0.8.8",
     "mysql2": "^3.6.5",

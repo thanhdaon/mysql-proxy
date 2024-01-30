@@ -5,11 +5,20 @@ import {
   type Connection,
   type Pool,
 } from "mysql2/promise";
+import { logger } from "@bogeychan/elysia-logger";
 import { env } from "~/env";
 
 async function main() {
   const dbPool = await createDatabasePool();
   const app = new Elysia().state("dbPool", dbPool);
+
+  app.use(
+    logger({
+      customProps(ctx) {
+        return { body: ctx.body };
+      },
+    })
+  );
 
   app.post("/:database/migrate", async ({ params, body, store, set }) => {
     const database = store.dbPool.get(params.database);
