@@ -12,6 +12,7 @@
     "@bogeychan/elysia-logger": "^0.0.16",
     "@t3-oss/env-core": "^0.7.1",
     "elysia": "^0.8.8",
+    "minimatch": "^9.0.3",
     "mysql2": "^3.6.5",
     "zod": "^3.22.4"
   }

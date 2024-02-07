@@ -7,18 +7,26 @@ import {
 } from "mysql2/promise";
 import { logger } from "@bogeychan/elysia-logger";
 import { env } from "~/env";
+import { basicAuth } from "./basic-auth";
 
 async function main() {
   const dbPool = await createDatabasePool();
   const app = new Elysia().state("dbPool", dbPool);
 
-  app.use(
-    logger({
-      customProps(ctx) {
-        return { body: ctx.body };
-      },
-    })
-  );
+  const customeLogger = logger({
+    customProps(ctx) {
+      return { body: ctx.body };
+    },
+  });
+
+  const auth = basicAuth({
+    users: [{ username: env.BASIC_AUTH_USER, password: env.BASIC_AUTH_PASS }],
+    realm: "",
+    errorMessage: "Unauthorized",
+    noErrorThrown: false,
+  });
+
+  app.use(customeLogger).use(auth);
 
   app.post("/:database/migrate", async ({ params, body, store, set }) => {
     const database = store.dbPool.get(params.database);

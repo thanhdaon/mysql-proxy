@@ -1,4 +1,4 @@
-FROM oven/bun:1.0.21 as base
+FROM oven/bun:1.0.26 as base
 WORKDIR /usr/src/app
 
 # install dependencies into temp directory
@@ -28,5 +28,4 @@ COPY --from=prerelease /usr/src/app/tsconfig.json .
 
 # run the app
 USER bun
-EXPOSE 3000/tcp
 ENTRYPOINT [ "bun", "run", "src/index.ts" ]
