@@ -6,17 +6,17 @@ services:
     volumes:
       - "mysql-data:/var/lib/mysql"
     environment:
-      - "MYSQL_ROOT_PASSWORD=YFTNgdJCP2AHUTQln87sTUjLs7RMk"
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
     ports:
       - "3306:3306"
   
   mysql-proxy:
     image: "database/mysql-proxy"
     environment:
-      - "PORT=1234"
-      - "MYSQL_ROOT_URI=mysql://root:YFTNgdJCP2AHUTQln87sTUjLs7RMk@mysql:3306"
+      - "PORT=${PORT}"
+      - "MYSQL_ROOT_URI=${MYSQL_ROOT_URI}"
     ports:
-      - "1234:1234"
+      - "${PORT}:${PORT}"
 
 volumes:
   mysql-data:
